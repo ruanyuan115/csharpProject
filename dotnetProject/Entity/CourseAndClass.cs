@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using PersistentLayer.Mapper;
 using dotnetProject.Services;
 using dotnetProject.Services.ServiceImp;
+using System.Text.RegularExpressions;
 
 namespace dotnetProject.Entity
 {
@@ -17,7 +18,9 @@ namespace dotnetProject.Entity
         {
             
         CourseInfo temp = courseInfo;
-        temp.courseName=(new CourseServiceImp().getCourseNameByNameID(int.Parse(courseInfo.courseName)).courseName);
+        Regex regExp = new Regex(@"^\d+$");
+        if(regExp.IsMatch(courseInfo.courseName))
+             temp.courseName=(new CourseServiceImp().getCourseNameByNameID(int.Parse(courseInfo.courseName)).courseName);
         this.courseInfo=temp;
         this.courseClass=courseClass;
         this.courseNameID=courseInfo.courseName;

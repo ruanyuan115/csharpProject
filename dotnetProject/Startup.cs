@@ -55,7 +55,7 @@ namespace dotnetProject
             }
             app.UseCors("allowCORS");   //必须位于UserMvc之前 
             app.UseStaticFiles();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

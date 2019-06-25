@@ -10,7 +10,6 @@ namespace dotnetProject.Services
     public interface CourseService
     {
         CourseName getCourseNameByNameID(int? courseNameID);
-        /*
         int? addNewCourse(CourseInfo courseInfo);
         int? addClass(CourseClass courseClass);
         int? alertClassInfo(CourseClass courseClass);
@@ -26,11 +25,15 @@ namespace dotnetProject.Services
         ChapterNode addChapter(ChapterNode chapterNode);
         ChapterNode getChapterByID(int? chapterID);
         List<CourseCatalog> getCourseCatalog(int? courseID);
+        Dictionary<string, Object> getCourseClassNLPRate(int? courseID);
+        Dictionary<string, Object> getCourseClassAvgScore(int? courseID);
+        Dictionary<string, Object> getChapterNLPRate(int? chapterID);
+        List<Dictionary<string, Object>> getChapterScoreAndCommentByGender(int? chapterID, int? getDetail, int? courseClassID);
         List<StudentChapterEntity> getCourseScoreAndComment(int? courseID, int? studentID);
+        List<CourseClass> getClassesByCourseID(int? courseID);
+        
         ChapterNode getCurrentProgress(int? courseID, int? studentID);
         int? alertCurrentProgress(int? courseID, int? studentID, int? chapterID);
-        void deleteChapter(CourseCatalog courseCatalog);
-        List<CourseClass> getClassesByCourseID(int? courseID);
         int? deleteClass(int? courseClassID);
         List<CourseAndClass> getCoursesByTeacherID(int? teacherID);
         List<UserInfo> getStudentsByClassID(int? courseClassId);
@@ -45,19 +48,17 @@ namespace dotnetProject.Services
         int? deleteCourseRelation(int? courseNameID, int? preCourseNameID);
         int? addChapterRelation(int? chapterID, int? preChapterID);
         int? deleteChapterRelation(int? chapterID, int? preChapterID);
-        Dictionary<string,Object> getStudentNumByTeacher(int? teacherID);
-        Dictionary<string,Object> getStudentNumBySemesterAndYear(int? year, String semester);
-        Dictionary<string,Object> getStudentNumByYear(int? year);
+        Dictionary<String, int?> getStudentNumByTeacher(int? teacherID);
+
+        Dictionary<String, int?> getStudentNumBySemesterAndYear(int? year, String semester);
+        Dictionary<String, int?> getStudentNumByYear(int? year);
         List<Dictionary<string,Object>> getRateBySemesterAndYear(String courseName);
         List<Dictionary<string,Object>> getClassesByNIDAndTID(String courseNameID, int? teacherID);
         List<Dictionary<string,Object>> getTeacherListByNID(String courseNameID);
-        int? addStudentComment(int? chapterID, int? studentID, String comment, int? rate);
         int? addClassComment(int? courseClassID, int? studentID, String comment, int? rate);
-        List<Dictionary<string,Object>> getChapterScoreAndCommentByGender(int? chapterID, int? getDetail, int? courseClassID);
-        Dictionary<string,Object> getCourseClassAvgScore(int? courseID);
-        Dictionary<string,Object> getCourseYearAvgScoreRate(int? courseNameID, int? teacherID);
-        Dictionary<string,Object> getCourseClassNLPRate(int? courseID);
-        Dictionary<string,Object> getChapterNLPRate(int? chapterID);
-        */
+        Dictionary<String, Dictionary<String, Dictionary<String, Object>>> getCourseYearAvgScoreRate(int? courseNameID, int? teacherID);
+        void deleteChapter(CourseCatalog courseCatalog);
+
+        
     }
 }
