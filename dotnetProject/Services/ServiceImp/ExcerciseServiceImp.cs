@@ -268,7 +268,7 @@ namespace dotnetProject.Services.ServiceImp
     public ResultEntity answerOne(String answer, int? exerciseId, int? studentId)
         {
             ResultEntity resultEntity = new ResultEntity();
-            StudentExerciseScore studentExerciseScore = new StudentExerciseScore(studentId, exerciseId, answer, 0);
+            StudentExerciseScore studentExerciseScore = new StudentExerciseScore(studentId, exerciseId, answer, 0.ToString());
             studentExerciseScore.corrected = 0;
             Exercise exercise = ExerciseApi.findByExerciseId(exerciseId);
             if (studentExerciseScore != null)
@@ -278,7 +278,7 @@ namespace dotnetProject.Services.ServiceImp
                     if (answer.Equals(exercise.exerciseAnswer))
                     {
                         studentExerciseScore.corrected=1;
-                        studentExerciseScore.exerciseScore=exercise.exercisePoint;
+                        studentExerciseScore.exerciseScore=exercise.exercisePoint.ToString();
                     }
                 }
                 resultEntity.setData(StudentExerciseScoreApi.insert(studentExerciseScore));
@@ -339,9 +339,9 @@ namespace dotnetProject.Services.ServiceImp
                 for(int i=0;i<answers.Count;i++){
                     answerOne(answers[i], exerciseSets[i].getExercise().exerciseId, studentId);
                 }
-                int? score = 0;
+                int score = 0;
                 foreach(int? exerciseId in exerciseIds){
-                    score+=StudentExerciseScoreApi.findByExerciseIdAndStudentId(exerciseId, studentId).exerciseScore;
+                    score+=int.Parse(StudentExerciseScoreApi.findByExerciseIdAndStudentId(exerciseId, studentId).exerciseScore);
                 }
                 StudentChapter studentChapter;
                 if(!StudentChapterApi.existsByChapterIDAndStudentID(chapterId, studentId)){
@@ -411,7 +411,7 @@ namespace dotnetProject.Services.ServiceImp
             StudentExerciseScore studentExerciseScore = StudentExerciseScoreApi.getByID(studentExerciseScoreId);
             if (studentExerciseScore != null)
             {
-                studentExerciseScore.exerciseScore=score;
+                studentExerciseScore.exerciseScore=score.ToString();
                 resultEntity.setData(StudentExerciseScoreApi.insert(studentExerciseScore));
                 if (resultEntity.getData() != null)
                 {
@@ -463,7 +463,7 @@ namespace dotnetProject.Services.ServiceImp
                 for (int i = 0; i < scores.Count; i++)
                 {
                     studentExerciseScore = StudentExerciseScoreApi.findByExerciseIdAndStudentId(exerciseIds[i], studentId);
-                    studentExerciseScore.exerciseScore=scores[i];
+                    studentExerciseScore.exerciseScore=scores[i].ToString();
                     studentExerciseScore.corrected=1;
                     StudentExerciseScoreApi.insert(studentExerciseScore);
                 }
@@ -477,10 +477,10 @@ namespace dotnetProject.Services.ServiceImp
                 {
                     exerciseIds.Add(exercise.exerciseId);
                 }
-                int? score = 0;
+                int score = 0;
                 foreach (int? exerciseId in exerciseIds)
                 {
-                    score += StudentExerciseScoreApi.findByExerciseIdAndStudentId(exerciseId, studentId).exerciseScore;
+                    score += int.Parse(StudentExerciseScoreApi.findByExerciseIdAndStudentId(exerciseId, studentId).exerciseScore);
                 }
                 if (type.Equals("preview"))
                 {
@@ -692,7 +692,7 @@ namespace dotnetProject.Services.ServiceImp
             int? score = 0;
             foreach (Exercise exercise in exercises)
             {
-                score += StudentExerciseScoreApi.findByExerciseIdAndStudentId(exercise.exerciseId, studentId).exerciseScore;
+                score += int.Parse(StudentExerciseScoreApi.findByExerciseIdAndStudentId(exercise.exerciseId, studentId).exerciseScore);
             }
             return score;
         }
@@ -759,18 +759,18 @@ namespace dotnetProject.Services.ServiceImp
             {
                 if (!StudentExerciseScoreApi.existsByExerciseIdAndStudentId(exercise.exerciseId, studentId))
                     return null;
-                scores.Add(StudentExerciseScoreApi.findByExerciseIdAndStudentId(exercise.exerciseId, studentId).exerciseScore);
+                scores.Add(int.Parse(StudentExerciseScoreApi.findByExerciseIdAndStudentId(exercise.exerciseId, studentId).exerciseScore));
             }
             exercises = ExerciseApi.findByChapterIdAndExerciseTypeOrderByExerciseNumber(chapterId, type3);
             foreach (Exercise exercise in exercises)
             {
-                scores.Add(StudentExerciseScoreApi.findByExerciseIdAndStudentId(exercise.exerciseId, studentId).exerciseScore);
+                scores.Add(int.Parse(StudentExerciseScoreApi.findByExerciseIdAndStudentId(exercise.exerciseId, studentId).exerciseScore));
             }
             exercises = ExerciseApi.findByChapterIdAndExerciseTypeOrderByExerciseNumber(chapterId, type2);
             foreach (Exercise exercise in exercises)
             {
                 if (StudentExerciseScoreApi.findByExerciseIdAndStudentId(exercise.exerciseId, studentId).corrected != 0)
-                    scores.Add(StudentExerciseScoreApi.findByExerciseIdAndStudentId(exercise.exerciseId, studentId).exerciseScore);
+                    scores.Add(int.Parse(StudentExerciseScoreApi.findByExerciseIdAndStudentId(exercise.exerciseId, studentId).exerciseScore));
             }
             return scores;
         }
@@ -954,7 +954,7 @@ namespace dotnetProject.Services.ServiceImp
 
         
         
-    public List<UnratedChapter> getUnratedChapters(int classId)
+    /*public List<UnratedChapter> getUnratedChapters(int classId)
         {
             List<UserInfo> userInfos = CourseService.getStudentsByClassID(classId);
             List<ChapterNode> chapterNodes = ChapterContentApi.findByCourseID(CourseClassApi.getByID(classId).courseID);
@@ -987,7 +987,7 @@ namespace dotnetProject.Services.ServiceImp
             return unratedChapters;
         }
 
-        
+        */
         
     public List<CourseAndClassList> currentCourseByTeacherId(int teacherId)
         {

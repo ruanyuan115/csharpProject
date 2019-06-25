@@ -12,7 +12,6 @@ using dotnetProject.Services;
 namespace dotnetProject.Controllers
 {
     [Route("/question")]
-
     public class ExerciseController : Controller
     {
         private readonly ExcerciseService _exerciseService;
@@ -24,92 +23,92 @@ namespace dotnetProject.Controllers
             _exerciseService = excerciseService;
         }
 
-        [HttpGet("/findOneExercise")]
+        [HttpGet("findOneExercise")]
     public ResultEntity findOneExercise(int? exerciseId)
         {
             return _exerciseService.findOneExerice(exerciseId);
         }
 
-        [HttpPost("/addExercise")]
+        [HttpPost("addExercise")]
     public ResultEntity addExercise(Exercise exercise)
         {
             return _exerciseService.addExercise(exercise);
         }
 
 
-        [HttpPost("/alterExercise")]
+        [HttpPost("alterExercise")]
     public ResultEntity alterExercise(Exercise exercise)
         {
             return _exerciseService.alterExercise(exercise);
         }
 
-        [HttpPost("/addChoice")]
+        [HttpPost("addChoice")]
     public ResultEntity addChoice(ExerciseChoice exerciseChoice)
         {
             return _exerciseService.addExerciseChoice(exerciseChoice);
         }
 
 
-        [HttpPost("/alterChoice")]
+        [HttpPost("alterChoice")]
     public ResultEntity alterChoice(ExerciseChoice exerciseChoice)
         {
             return _exerciseService.alterExerciseChoice(exerciseChoice);
         }
 
-        [HttpGet("/findOneAnswer")]
+        [HttpGet("findOneAnswer")]
     public ResultEntity findOneAnswer(int? exerciseId, int? studentId)
         {
             return _exerciseService.findOneAnswer(exerciseId, studentId);
         }
 
-        [HttpGet("/findOneAnswerById")]
+        [HttpGet("findOneAnswerById")]
     public ResultEntity findOneAnswerById(int? studentExerciseScoreId)
         {
             return _exerciseService.findOneAnswerById(studentExerciseScoreId);
         }
 
-        [HttpPost("/addAnswer")]
+        [HttpPost("addAnswer")]
     public ResultEntity addAnswer(String answer, int? exerciseId, int? userId)
         {
             return _exerciseService.answerOne(answer, exerciseId, userId);
         }
 
-        [HttpPost("/answerAll")]
+        [HttpPost("answerAll")]
     public ResultEntity answerAll(List<String> answers, int? studentId, int? chapterId, String type, String comment, int? rate)
         {
         return _exerciseService.answerAll(answers, studentId, chapterId, type, comment, rate);
     }
 
-    [HttpPut( "/alterAnswer")]
+    [HttpPut( "alterAnswer")]
     public ResultEntity alterAnswer(String answer, int? exerciseId, int? studentId)
     {
         return _exerciseService.alterAnswer(answer, exerciseId, studentId);
     }
 
-    [HttpPut( "/correctOne")]
+    [HttpPut( "correctOne")]
     public ResultEntity correctOne(int? studentExerciseScoreId, int? score)
     {
         return _exerciseService.correctOne(studentExerciseScoreId, score);
     }
 
-    [HttpPost( "/correctAll")]
+    [HttpPost( "correctAll")]
     public ResultEntity correctAll(List<int?> scores, int? studentId,int? chapterId, String type){
         return _exerciseService.correctAll(scores, studentId, chapterId, type);
     }
 
-[HttpGet( "/view")]
+[HttpGet( "view")]
     public ResultEntity viewExercise(int? chapterId, String type)
 {
     return _exerciseService.viewExercise(chapterId, type);
 }
 
-[HttpGet("/viewSomeAnswer")]
+[HttpGet("viewSomeAnswer")]
     public ResultEntity viewSomeAnswer(int? chapterId, int? studentId, String type)
 {
     return _exerciseService.viewSomeAnswer(chapterId, studentId, type);
 }
 
-[HttpGet( "/getScore")]
+[HttpGet( "getScore")]
     public ResultEntity getScore(int? chapterId, int? studentId)
 {
     ResultEntity resultEntity = new ResultEntity();
@@ -127,13 +126,13 @@ namespace dotnetProject.Controllers
     return resultEntity;
 }
 
-[HttpGet( "/rateNumber")]
+[HttpGet( "rateNumber")]
     public ResultEntity rateNumber(int? chapterId)
 {
     return _exerciseService.rateNumber(chapterId);
 }
 
-[HttpGet("/sameCoursesByName")]
+[HttpGet("sameCoursesByName")]
     public ResultEntity sameCoursesByName(String courseName, int teacherId)
 {
     ResultEntity resultEntity = new ResultEntity();
@@ -159,7 +158,7 @@ namespace dotnetProject.Controllers
     return resultEntity;
 }
 
-[HttpGet("/sameCoursesById")]
+[HttpGet("sameCoursesById")]
     public ResultEntity sameCoursesById(int courseId, int teacherId)
 {
     ResultEntity resultEntity = new ResultEntity();
@@ -186,7 +185,7 @@ namespace dotnetProject.Controllers
 }
 
 
-[HttpGet("/exerciseScore")]
+[HttpGet("exerciseScore")]
     public ResultEntity exerciseScore(int studentId, int chapterId, String type)
 {
     ResultEntity resultEntity = new ResultEntity();
@@ -212,7 +211,7 @@ namespace dotnetProject.Controllers
     return resultEntity;
 }
 
-[HttpGet("/getPrecourse")]
+[HttpGet("getPrecourse")]
     public ResultEntity getPrecourse(int courseId, int studentId)
 {
     ResultEntity resultEntity = new ResultEntity();
@@ -248,7 +247,7 @@ namespace dotnetProject.Controllers
     return resultEntity;
 }
 
-[HttpGet("/userLabel")]
+[HttpGet("userLabel")]
     public ResultEntity userLabel(int? studentId)
 {
     ResultEntity resultEntity = new ResultEntity();
@@ -265,7 +264,7 @@ namespace dotnetProject.Controllers
     return resultEntity;
 }
 
-[HttpGet(("/currentCourse")]
+[HttpGet("currentCourse")]
     public ResultEntity currentCourse(int year, String semester)
 {
     ResultEntity resultEntity = new ResultEntity();
@@ -291,8 +290,8 @@ namespace dotnetProject.Controllers
     return resultEntity;
 }
 
-[HttpGet("/getUnratedChapters")]
-    public ResultEntity getUnratedChapters(int? classId)
+//[HttpGet("/getUnratedChapters")]
+  /*  public ResultEntity getUnratedChapters(int? classId)
 {
     ResultEntity resultEntity = new ResultEntity();
     if (classId != null)
@@ -316,8 +315,9 @@ namespace dotnetProject.Controllers
     }
     return resultEntity;
 }
+*/
 
-[HttpGet("/currentCourseByTeacherId")]
+[HttpGet("currentCourseByTeacherId")]
     public ResultEntity currentCourseByTeacherId(int? teacherId)
 {
     ResultEntity resultEntity = new ResultEntity();
@@ -343,7 +343,7 @@ namespace dotnetProject.Controllers
     return resultEntity;
 }
 
-[HttpGet("/currentCourseByStudentId")]
+[HttpGet("currentCourseByStudentId")]
     public ResultEntity currentCourseByStudentId(int? studentId)
 {
     ResultEntity resultEntity = new ResultEntity();
