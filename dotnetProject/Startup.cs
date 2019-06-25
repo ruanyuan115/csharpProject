@@ -10,10 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using dotnetProject.Infrastructure.Repository;
-using dotnetProject.Infrastructure.Services;
-using dotnetProject.Repository;
 using dotnetProject.Services;
+using dotnetProject.Services.ServiceImp;
 
 namespace dotnetProject
 {
@@ -31,12 +29,17 @@ namespace dotnetProject
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //Dependency Injection
-            services.AddScoped<IValidationRepository, ValidationRepository>();
-            services.AddScoped<IValidationService, ValidationService>();
-            services.AddScoped<IInteropService, InteropServce>();
+            services.AddScoped<UserService, UserServiceImp>();
+            services.AddScoped<CourseService, CourseServiceImp>();
+            //配置跨域处理，允许所有来源：
+            services.AddCors(options =>
+                options.AddPolicy("allowCORS",
+                p => p.AllowAnyOrigin())
+            );
+            services.AddMvc();
 
-            services.AddTransient<IFileService, FileService>();
-            
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +53,7 @@ namespace dotnetProject
             {
                 app.UseHsts();
             }
-
+            app.UseCors("allowCORS");   //必须位于UserMvc之前 
             app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseMvc();
