@@ -31,6 +31,7 @@ namespace dotnetProject
             //Dependency Injection
             services.AddScoped<UserService, UserServiceImp>();
             services.AddScoped<CourseService, CourseServiceImp>();
+            services.AddScoped<ExcerciseService, ExcerciseServiceImp>();
             //配置跨域处理，允许所有来源：
             services.AddCors(options =>
                 options.AddPolicy("allowCORS",
