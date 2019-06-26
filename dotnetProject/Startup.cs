@@ -28,15 +28,17 @@ namespace dotnetProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            //Dependency Injection
-            services.AddScoped<UserService, UserServiceImp>();
-            services.AddScoped<CourseService, CourseServiceImp>();
-            services.AddScoped<ExcerciseService, ExcerciseServiceImp>();
             //配置跨域处理，允许所有来源：
             services.AddCors(options =>
                 options.AddPolicy("allowCORS",
                 p => p.AllowAnyOrigin())
             );
+
+            //Dependency Injection
+            services.AddScoped<UserService, UserServiceImp>();
+            services.AddScoped<CourseService, CourseServiceImp>();
+            services.AddScoped<ExcerciseService, ExcerciseServiceImp>();
+           
             services.AddMvc();
 
 
@@ -54,7 +56,7 @@ namespace dotnetProject
             {
                 app.UseHsts();
             }
-            app.UseCors("allowCORS");   //必须位于UserMvc之前 
+            app.UseCors("allowCORS");
             app.UseStaticFiles();
             //app.UseHttpsRedirection();
             app.UseMvc();

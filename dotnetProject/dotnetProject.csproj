@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
+    <PackageReference Include="Microsoft.AspNet.Cors" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Tracing" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNet.WebApi.WebHost" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -23,8 +24,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="PersistentLayer">
-      <HintPath>..\..\PersistentLayer\bin\Debug\netcoreapp2.1\PersistentLayer.dll</HintPath>
+    <Reference Include="PersistentLayer2">
+      <HintPath>..\..\..\..\source\repos\PersistentLayer2\PersistentLayer2\obj\Debug\netcoreapp2.1\PersistentLayer2.dll</HintPath>
+    </Reference>
+    <Reference Include="PersistentLayer3">
+      <HintPath>..\..\..\..\source\repos\PersistentLayer3\PersistentLayer3\obj\Debug\netcoreapp2.1\PersistentLayer3.dll</HintPath>
+    </Reference>
+    <Reference Include="PersistentLayer4">
+      <HintPath>..\..\..\..\source\repos\PersistentLayer4\PersistentLayer4\obj\Debug\netcoreapp2.1\PersistentLayer4.dll</HintPath>
+    </Reference>
+    <Reference Include="PersistentLayer5">
+      <HintPath>..\..\..\..\source\repos\PersistentLayer5\PersistentLayer5\obj\Debug\netcoreapp2.1\PersistentLayer5.dll</HintPath>
+    </Reference>
+    <Reference Include="PersistentLayerP1">
+      <HintPath>..\..\..\..\source\repos\PersistentLayerP1\PersistentLayerP1\bin\Debug\netcoreapp2.1\PersistentLayerP1.dll</HintPath>
     </Reference>
   </ItemGroup>
 
